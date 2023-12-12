@@ -1,6 +1,7 @@
 package com.clova.hackathon.goodbyebunny.domain.comment.model;
 
 import com.clova.hackathon.goodbyebunny.domain.member.model.Member;
+import com.clova.hackathon.goodbyebunny.domain.review.model.Review;
 import com.clova.hackathon.goodbyebunny.global.common.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,7 +24,7 @@ public class Comment extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "review_id")
-    private Comment comment;
+    private Review review;
 
     @ManyToOne
     @JoinColumn(name = "member_id")
