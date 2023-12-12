@@ -13,14 +13,9 @@ import java.util.List;
 @Getter
 @Table(name = "member")
 @Builder
-@AttributeOverride(name = "id", column = @Column(name = "member_id"))
-@AttributeOverride(name = "createdDate", column = @Column(name = "member_created_date"))
-@AttributeOverride(name = "updatedDate", column = @Column(name = "member_updated_date"))
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseEntity {
-
-
 
     @NonNull
     private String nickname;
