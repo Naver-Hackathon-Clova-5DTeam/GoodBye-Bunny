@@ -2,8 +2,10 @@ package com.clova.hackathon.goodbyebunny;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
+@EnableJpaAuditing
 public class GoodbyebunnyApplication {
 
 	public static void main(String[] args) {
