@@ -171,3 +171,6 @@ gradle-app.setting
 
 ## .yml files ##
 src/main/resources/application.yml
+
+## .DS_Store ##
+.DS_Store
