@@ -23,10 +23,16 @@ public class ReviewService {
     // Review 작성
     public ResponseEntity<Long> createReview(String memberNickname, ReviewCreateRequest request) {
 
-        Optional<Member> member = memberRepository.findMemberByNickname(memberNickname);
+        Member member = memberRepository.findMemberByNickname(memberNickname)
+                .orElseThrow(() -> new IllegalStateException("존재하지 않는 회원입니다."));
+
+        reviewRepository.findReviewByMemberId(member.getId())
+                .ifPresent((_review) -> {
+                    throw new IllegalStateException("작성한 회고가 존재합니다.");
+                });
 
         Review review = Review.builder()
-                .member(member.get())
+                .member(member)
                 .title(request.getTitle())
                 .content(request.getContent())
                 .build();
