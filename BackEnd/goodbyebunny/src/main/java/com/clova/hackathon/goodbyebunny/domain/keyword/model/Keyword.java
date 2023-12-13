@@ -4,6 +4,7 @@ package com.clova.hackathon.goodbyebunny.domain.keyword.model;
 import com.clova.hackathon.goodbyebunny.domain.review.model.ReviewKeyword;
 import com.clova.hackathon.goodbyebunny.global.common.model.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Keyword extends BaseEntity {
 
-    @NonNull
+    @NotNull
     private String word;
 
     @OneToMany(mappedBy = "keyword", cascade = CascadeType.ALL)

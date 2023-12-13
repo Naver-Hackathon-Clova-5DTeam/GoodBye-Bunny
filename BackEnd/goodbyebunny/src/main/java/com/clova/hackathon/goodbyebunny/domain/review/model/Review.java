@@ -4,6 +4,7 @@ import com.clova.hackathon.goodbyebunny.domain.comment.model.Comment;
 import com.clova.hackathon.goodbyebunny.domain.member.model.Member;
 import com.clova.hackathon.goodbyebunny.global.common.model.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -21,7 +22,10 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Review extends BaseEntity {
 
-    @NonNull
+    @NotNull
+    private String title;
+
+    @NotNull
     private String content;
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
