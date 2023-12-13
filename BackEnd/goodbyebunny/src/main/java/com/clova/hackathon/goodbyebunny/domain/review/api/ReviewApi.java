@@ -28,13 +28,12 @@ public class ReviewApi {
 
     }
 
-    @GetMapping("/{review_id}")
-    public ResponseEntity<ReviewReadResponse> getReview(@AuthenticationPrincipal final MemberDetails member,
-                                                        @PathVariable("review_id") Long reviewId) {
+    @GetMapping()
+    public ResponseEntity<ReviewReadResponse> getReview(@AuthenticationPrincipal final MemberDetails member) {
 
         // member 닉네임 가져오기
         String memberNickname =member.getUsername();
-        return reviewService.getReview(memberNickname, reviewId);
+        return reviewService.getReview(memberNickname);
 
 
     }

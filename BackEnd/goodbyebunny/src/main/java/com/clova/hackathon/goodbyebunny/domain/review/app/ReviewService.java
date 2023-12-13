@@ -23,16 +23,10 @@ public class ReviewService {
     // Review 작성
     public ResponseEntity<Long> createReview(String memberNickname, ReviewCreateRequest request) {
 
-        Member member = memberRepository.findMemberByNickname(memberNickname)
-                .orElseThrow(() -> new IllegalStateException("존재하지 않는 회원입니다."));
-
-        reviewRepository.findReviewByMemberId(member.getId())
-                .ifPresent((_review) -> {
-                    throw new IllegalStateException("작성한 회고가 존재합니다.");
-                });
+        Optional<Member> member = memberRepository.findMemberByNickname(memberNickname);
 
         Review review = Review.builder()
-                .member(member)
+                .member(member.get())
                 .title(request.getTitle())
                 .content(request.getContent())
                 .build();
@@ -43,20 +37,18 @@ public class ReviewService {
 
     }
 
-    // Review 조회
-    public ResponseEntity<ReviewReadResponse> getReview(String memberNickname, Long reviewId) {
+    // 나의 Review 조회
+    public ResponseEntity<ReviewReadResponse> getReview(String memberNickname) {
 
-        //review 조회
-        Review review = reviewRepository.findReviewById(reviewId)
-                .orElseThrow(() -> new IllegalStateException("존재하지 않는 회고입니다."));
+
         //member 조회
         Member member = memberRepository.findMemberByNickname(memberNickname)
                 .orElseThrow(() -> new IllegalStateException("존재하지 않는 회원입니다."));
 
-        //review과 memberId의 유효성 체크
-        if (review.getMember().getId() != member.getId()){
-            throw new IllegalStateException("허가되지 않은 접근입니다.");
-        }
+        //review 조회
+        Review review = reviewRepository.findReviewByMemberId(member.getId())
+                .orElseThrow(() -> new IllegalStateException("존재하지 않는 회고입니다."));
+
 
         return ResponseEntity.ok(ReviewReadResponse.of(review.getTitle(), review.getContent(),review.getUpdatedDate()));
 
