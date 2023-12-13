@@ -4,6 +4,7 @@ import com.clova.hackathon.goodbyebunny.domain.member.model.Member;
 import com.clova.hackathon.goodbyebunny.domain.review.model.Review;
 import com.clova.hackathon.goodbyebunny.global.common.model.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 
@@ -18,7 +19,7 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Comment extends BaseEntity {
 
-    @NonNull
+    @NotNull
     @Column(name = "comment_content")
     private String commentContent;
 

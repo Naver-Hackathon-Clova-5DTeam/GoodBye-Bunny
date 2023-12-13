@@ -4,6 +4,7 @@ import com.clova.hackathon.goodbyebunny.domain.comment.model.Comment;
 import com.clova.hackathon.goodbyebunny.domain.review.model.Review;
 import com.clova.hackathon.goodbyebunny.global.common.model.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -17,13 +18,13 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member extends BaseEntity {
 
-    @NonNull
+    @NotNull
     private String nickname;
 
-    @NonNull
+    @NotNull
     private String password;
 
-    @NonNull
+    @NotNull
     private int age;
 
     @Column(name=" comment_num")
