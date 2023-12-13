@@ -20,6 +20,6 @@ public class ReviewReadResponse {
                 .content(content)
                 .updateTime(reviewUpdateTime)
                 .build();
-    }능
+    }
 
 }
