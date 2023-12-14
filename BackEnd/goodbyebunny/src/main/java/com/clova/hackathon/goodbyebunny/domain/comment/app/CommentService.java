@@ -46,7 +46,7 @@ public class CommentService {
 
 
         return ResponseEntity.ok(commentRepository.findCommentsByReviewId(reviewId).stream().map(comment ->
-            CommentReadResponse.of(comment.getId(), comment.getCommentContent(), comment.getUpdatedDate())
+            CommentReadResponse.of(comment.getId(), comment.getCommentContent(), comment.getUpdatedDate(),comment.getMember().getNickname())
         ).toList());
 
     }
