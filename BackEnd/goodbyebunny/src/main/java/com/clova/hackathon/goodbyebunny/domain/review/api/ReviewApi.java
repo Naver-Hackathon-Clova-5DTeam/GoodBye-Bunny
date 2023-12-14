@@ -1,6 +1,7 @@
 package com.clova.hackathon.goodbyebunny.domain.review.api;
 
 import com.clova.hackathon.goodbyebunny.domain.review.api.request.ReviewCreateRequest;
+import com.clova.hackathon.goodbyebunny.domain.review.api.request.ReviewUpdateRequest;
 import com.clova.hackathon.goodbyebunny.domain.review.api.response.ReviewReadResponse;
 import com.clova.hackathon.goodbyebunny.domain.review.app.ReviewService;
 import com.clova.hackathon.goodbyebunny.global.security.MemberDetails;
@@ -34,6 +35,17 @@ public class ReviewApi {
         // member 닉네임 가져오기
         String memberNickname =member.getUsername();
         return reviewService.getReview(memberNickname);
+
+
+    }
+
+    @PatchMapping()
+    public ResponseEntity<Long> updateReview(@AuthenticationPrincipal final MemberDetails member,
+                                                             @RequestBody ReviewUpdateRequest request) {
+
+        // member 닉네임 가져오기
+        String memberNickname =member.getUsername();
+        return reviewService.updateReview(memberNickname, request);
 
 
     }

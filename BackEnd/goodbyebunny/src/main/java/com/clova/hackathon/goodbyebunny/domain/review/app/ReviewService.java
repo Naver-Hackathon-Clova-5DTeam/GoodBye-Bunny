@@ -3,14 +3,13 @@ package com.clova.hackathon.goodbyebunny.domain.review.app;
 import com.clova.hackathon.goodbyebunny.domain.member.dao.MemberRepository;
 import com.clova.hackathon.goodbyebunny.domain.member.model.Member;
 import com.clova.hackathon.goodbyebunny.domain.review.api.request.ReviewCreateRequest;
+import com.clova.hackathon.goodbyebunny.domain.review.api.request.ReviewUpdateRequest;
 import com.clova.hackathon.goodbyebunny.domain.review.api.response.ReviewReadResponse;
 import com.clova.hackathon.goodbyebunny.domain.review.model.Review;
 import com.clova.hackathon.goodbyebunny.domain.review.dao.ReviewRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -59,4 +58,29 @@ public class ReviewService {
         return ResponseEntity.ok(ReviewReadResponse.of(review.getTitle(), review.getContent(),review.getUpdatedDate()));
 
     }
+
+    // 나의 Review 수정
+    public ResponseEntity<Long> updateReview(String memberNickname, ReviewUpdateRequest request) {
+
+
+        //member 조회
+        Member member = memberRepository.findMemberByNickname(memberNickname)
+                .orElseThrow(() -> new IllegalStateException("존재하지 않는 회원입니다."));
+
+        //review 조회
+        Review review = reviewRepository.findReviewByMemberId(member.getId())
+                .orElseThrow(() -> new IllegalStateException("존재하지 않는 회고입니다."));
+
+        if(!member.getId().equals(review.getMember().getId())){
+            throw new IllegalStateException("허용되지 않은 접근입니다.");
+        }
+
+        review.updateReview(request.getContent());
+        reviewRepository.save(review);
+
+
+        return ResponseEntity.ok(review.getId());
+
+    }
+
 }
