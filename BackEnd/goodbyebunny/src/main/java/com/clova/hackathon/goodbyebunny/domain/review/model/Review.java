@@ -38,5 +38,9 @@ public class Review extends BaseEntity {
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<ReviewKeyword> reviewKeywords = new ArrayList<>();
 
+    public void updateReview(String reviewContent){
+        this.content = reviewContent;
+    }
+
 }
 
