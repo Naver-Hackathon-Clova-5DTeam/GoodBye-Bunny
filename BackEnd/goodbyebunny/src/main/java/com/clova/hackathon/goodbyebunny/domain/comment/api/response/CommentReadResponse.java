@@ -13,13 +13,15 @@ public class CommentReadResponse {
     private Long commentId;
     private String commentContent;
     private LocalDateTime updateTime;
+    private String memberNickname;
 
 
-    public static CommentReadResponse of(Long commentId, String content, LocalDateTime reviewUpdateTime) {
+    public static CommentReadResponse of(Long commentId, String content, LocalDateTime reviewUpdateTime,String memberNickname) {
         return CommentReadResponse.builder()
                 .commentId(commentId)
                 .commentContent(content)
                 .updateTime(reviewUpdateTime)
+                .memberNickname(memberNickname)
                 .build();
 
     }
