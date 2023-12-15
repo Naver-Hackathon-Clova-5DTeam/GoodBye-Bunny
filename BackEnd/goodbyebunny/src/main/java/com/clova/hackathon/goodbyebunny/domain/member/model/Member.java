@@ -42,4 +42,10 @@ public class Member extends BaseEntity {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberItem> item;
+
+    private int point;
+
+    public void updateMember(final int point) {
+        this.point = point;
+    }
 }
