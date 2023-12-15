@@ -14,17 +14,15 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public class Item extends BaseEntity {
+public class MemberItem extends BaseEntity {
 
-    private int price;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
-    private List<MemberItem> memberItems;
-
-    private int itemNum;
-
-    @Enumerated(value = EnumType.STRING)
-    private ItemType type;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")
+    private Item item;
 
 
 
