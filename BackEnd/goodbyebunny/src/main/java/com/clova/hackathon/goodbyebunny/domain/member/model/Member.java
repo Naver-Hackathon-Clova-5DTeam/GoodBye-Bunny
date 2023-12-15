@@ -3,6 +3,7 @@ package com.clova.hackathon.goodbyebunny.domain.member.model;
 import com.clova.hackathon.goodbyebunny.domain.comment.model.Comment;
 import com.clova.hackathon.goodbyebunny.domain.item.model.Item;
 import com.clova.hackathon.goodbyebunny.domain.item.model.MemberItem;
+import com.clova.hackathon.goodbyebunny.domain.item.model.PickedItem;
 import com.clova.hackathon.goodbyebunny.domain.review.model.Review;
 import com.clova.hackathon.goodbyebunny.global.common.model.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -39,6 +40,9 @@ public class Member extends BaseEntity {
 
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
     private Review review;
+
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
+    private PickedItem pickedItem;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberItem> item;

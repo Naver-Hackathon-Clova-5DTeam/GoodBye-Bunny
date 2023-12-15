@@ -1,9 +1,10 @@
 package com.clova.hackathon.goodbyebunny.domain.item.api;
 
 
+import com.clova.hackathon.goodbyebunny.domain.item.api.request.PickItemRequest;
+import com.clova.hackathon.goodbyebunny.domain.item.api.response.GetItemResponseDto;
 import com.clova.hackathon.goodbyebunny.domain.item.app.ItemService;
-import com.clova.hackathon.goodbyebunny.domain.item.request.PurchaseItemRequest;
-import com.clova.hackathon.goodbyebunny.domain.member.api.request.LoginMemberRequest;
+import com.clova.hackathon.goodbyebunny.domain.item.api.request.PurchaseItemRequest;
 import com.clova.hackathon.goodbyebunny.global.security.MemberDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,8 @@ public class ItemApi {
 
     private final ItemService itemService;
 
-    @GetMapping("")
-    public ResponseEntity<?> getItem(@AuthenticationPrincipal final MemberDetails member){
+    @GetMapping("/list")
+    public ResponseEntity<?> getItemList(@AuthenticationPrincipal final MemberDetails member){
         List<?> result= itemService.getItemList(member.getNickname());
         return ResponseEntity.ok(result);
     }
@@ -28,6 +29,22 @@ public class ItemApi {
     @PostMapping("/purchase")
     public ResponseEntity<?> purchase(@RequestBody final PurchaseItemRequest request, @AuthenticationPrincipal final MemberDetails member){
         return itemService.purchaseItem(request,member.getNickname());
+
+    }
+
+    @PostMapping("/pick")
+    public ResponseEntity<?> pick(@RequestBody final PickItemRequest request, @AuthenticationPrincipal final MemberDetails member){
+        itemService.pickItem(request,member.getNickname());
+
+        return ResponseEntity.ok(null);
+
+    }
+
+    @GetMapping("")
+    public ResponseEntity<?> getItem(@AuthenticationPrincipal final MemberDetails member){
+        GetItemResponseDto item = itemService.getItem(member.getNickname());
+
+        return ResponseEntity.ok(item);
 
     }
 }
