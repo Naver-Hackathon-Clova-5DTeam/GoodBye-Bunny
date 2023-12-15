@@ -5,6 +5,7 @@ import com.clova.hackathon.goodbyebunny.domain.review.model.Review;
 import com.clova.hackathon.goodbyebunny.global.common.model.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 
@@ -20,7 +21,8 @@ import lombok.*;
 public class Comment extends BaseEntity {
 
     @NotNull
-    @Column(name = "comment_content")
+    @Size(min=1,max=300)
+    @Column(name = "comment_content",length = 300)
     private String commentContent;
 
     @ManyToOne
