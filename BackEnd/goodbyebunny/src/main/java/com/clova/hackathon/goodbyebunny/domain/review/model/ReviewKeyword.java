@@ -17,6 +17,8 @@ import lombok.*;
 @AttributeOverride(name = "updatedDate", column = @Column(name = "club_member_updated_date"))
 public class ReviewKeyword extends BaseEntity {
 
+    // @TODO: 유니크키 걸기
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "keyword_id")
     private Keyword keyword;
