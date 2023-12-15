@@ -61,7 +61,8 @@ public class CustomMemberRepositoryImpl implements CustomMemberRepository{
                     member1.getReview().getId(),
                     member1.getReview().getUpdatedDate(),
                     member1.getReview().getContent(),
-                    return_keyword
+                    return_keyword,
+                    member1.getProfile()
             );
             result.add(dto);
         }

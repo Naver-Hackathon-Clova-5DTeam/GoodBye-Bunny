@@ -49,6 +49,8 @@ public class Member extends BaseEntity {
 
     private int point;
 
+    private String profile;
+
     public void updateMember(final int point) {
         this.point = point;
     }
