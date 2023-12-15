@@ -11,10 +11,7 @@ import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,11 +37,5 @@ public class MemberApi {
     @PostMapping("/test")
     public String test(@AuthenticationPrincipal final MemberDetails member){
         return member.getNickname();
-    }
-
-    @PostMapping("/search")
-    public ResponseEntity<?> search(@AuthenticationPrincipal final MemberDetails member){
-        List<?> r=  memberService.search(member.getNickname());
-        return ResponseEntity.ok(r);
     }
 }

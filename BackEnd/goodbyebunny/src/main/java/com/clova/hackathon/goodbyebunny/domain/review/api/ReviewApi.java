@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/review")
@@ -50,4 +52,9 @@ public class ReviewApi {
 
     }
 
+    @GetMapping("/recommend")
+    public ResponseEntity<?> recommend(@AuthenticationPrincipal final MemberDetails member){
+        List<?> r=  reviewService.recommend(member.getNickname());
+        return ResponseEntity.ok(r);
+    }
 }

@@ -1,27 +1,21 @@
 package com.clova.hackathon.goodbyebunny.domain.member.app;
 
 
-import com.clova.hackathon.goodbyebunny.domain.keyword.model.Keyword;
 import com.clova.hackathon.goodbyebunny.domain.member.api.request.LoginMemberRequest;
 import com.clova.hackathon.goodbyebunny.domain.member.api.request.SignUpMemberRequest;
-import com.clova.hackathon.goodbyebunny.domain.member.dao.CustomMemberRepositoryImpl;
 import com.clova.hackathon.goodbyebunny.domain.member.dao.MemberRepository;
 import com.clova.hackathon.goodbyebunny.domain.member.model.Member;
-import com.clova.hackathon.goodbyebunny.domain.review.model.Review;
 import com.clova.hackathon.goodbyebunny.global.security.provider.JwtTokenProvider;
-import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    private final CustomMemberRepositoryImpl customMemberRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -42,13 +36,5 @@ public class MemberService {
         }
 
          return jwtTokenProvider.createAccessToken(member.getNickname());
-    }
-
-    public List<?> search(String nickName){
-        Member member = memberRepository.findMemberByNickname(nickName)
-                .orElseThrow(() -> new IllegalArgumentException("로그인 실패."));
-        Review review = member.getReview();
-
-        return customMemberRepository.getMatchingMembers(member.getAge(),member.getId());
     }
 }

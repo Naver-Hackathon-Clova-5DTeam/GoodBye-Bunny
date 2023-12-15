@@ -12,20 +12,20 @@ import java.util.List;
 @Setter
 @RequiredArgsConstructor
 public class MemberReviewDto {
-    private String nickname;
+    private String memberNickname;
     private String title;
-    private Long id;
-    private LocalDateTime updatedDate;
+    private Long reviewId;
+    private LocalDateTime updateTime;
     private String content;
-    private List<String> words;
+    private List<String> keywords;
 
-    public MemberReviewDto(String nickname, String title, Long id, LocalDateTime updatedDate, String content, List<String> words) {
-        this.nickname = nickname;
+    public MemberReviewDto(String memberNickname, String title, Long reviewId, LocalDateTime updateTime, String content, List<String> keywords) {
+        this.memberNickname = memberNickname;
         this.title = title;
-        this.id = id;
-        this.updatedDate = updatedDate;
+        this.reviewId = reviewId;
+        this.updateTime = updateTime;
         this.content = content;
-        this.words = words;
+        this.keywords = keywords;
     }
 
 }

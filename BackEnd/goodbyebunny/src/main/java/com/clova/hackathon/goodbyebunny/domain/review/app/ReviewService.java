@@ -1,5 +1,6 @@
 package com.clova.hackathon.goodbyebunny.domain.review.app;
 
+import com.clova.hackathon.goodbyebunny.domain.member.dao.CustomMemberRepositoryImpl;
 import com.clova.hackathon.goodbyebunny.domain.member.dao.MemberRepository;
 import com.clova.hackathon.goodbyebunny.domain.member.model.Member;
 import com.clova.hackathon.goodbyebunny.domain.review.api.request.ReviewCreateRequest;
@@ -11,6 +12,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class ReviewService {
@@ -18,6 +21,7 @@ public class ReviewService {
 
     private final MemberRepository memberRepository;
     private final ReviewRepository reviewRepository;
+    private final CustomMemberRepositoryImpl customMemberRepository;
 
     // Review 작성
     public ResponseEntity<Long> createReview(String memberNickname, ReviewCreateRequest request) {
@@ -81,6 +85,13 @@ public class ReviewService {
 
         return ResponseEntity.ok(review.getId());
 
+    }
+
+    public List<?> recommend(String nickName){
+        Member member = memberRepository.findMemberByNickname(nickName)
+                .orElseThrow(() -> new IllegalArgumentException("로그인 실패."));
+
+        return customMemberRepository.getMatchingMembers(member.getAge(),member.getId());
     }
 
 }
