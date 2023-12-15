@@ -117,7 +117,7 @@ public class ReviewService {
                 .orElseThrow(() -> new IllegalStateException("존재하지 않는 회고입니다."));
 
 
-        return ResponseEntity.ok(ReviewReadResponse.of(member.getNickname(), review.getTitle(), review.getContent(), review.getUpdatedDate()));
+        return ResponseEntity.ok(ReviewReadResponse.of(review.getId(), member.getNickname(), review.getTitle(), review.getContent(), review.getUpdatedDate()));
 
     }
 
