@@ -3,12 +3,10 @@ package com.clova.hackathon.goodbyebunny.domain.review.model;
 import com.clova.hackathon.goodbyebunny.domain.comment.model.Comment;
 import com.clova.hackathon.goodbyebunny.domain.member.model.Member;
 import com.clova.hackathon.goodbyebunny.global.common.model.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -31,6 +29,8 @@ public class Review extends BaseEntity {
     private String title;
 
     @NotNull
+    @Size(min=50,max=600)
+    @Column(length = 600)
     private String content;
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
