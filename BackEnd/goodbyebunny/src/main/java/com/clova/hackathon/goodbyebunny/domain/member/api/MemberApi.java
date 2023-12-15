@@ -44,7 +44,7 @@ public class MemberApi {
 
     @PostMapping("/search")
     public ResponseEntity<?> search(@AuthenticationPrincipal final MemberDetails member){
-        List<Member> r=  memberService.search(member.getNickname());
+        List<?> r=  memberService.search(member.getNickname());
         return ResponseEntity.ok(r);
     }
 }

@@ -3,7 +3,10 @@ package com.clova.hackathon.goodbyebunny.domain.review.model;
 import com.clova.hackathon.goodbyebunny.domain.comment.model.Comment;
 import com.clova.hackathon.goodbyebunny.domain.member.model.Member;
 import com.clova.hackathon.goodbyebunny.global.common.model.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -21,6 +24,7 @@ import java.util.List;
 @AttributeOverride(name = "updatedDate", column = @Column(name = "review_updated_date"))
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
+@JsonSerialize
 public class Review extends BaseEntity {
 
     @NotNull
@@ -36,7 +40,6 @@ public class Review extends BaseEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<ReviewKeyword> reviewKeywords = new ArrayList<>();
 

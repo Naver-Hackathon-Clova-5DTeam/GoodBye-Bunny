@@ -9,6 +9,7 @@ import com.clova.hackathon.goodbyebunny.domain.member.dao.MemberRepository;
 import com.clova.hackathon.goodbyebunny.domain.member.model.Member;
 import com.clova.hackathon.goodbyebunny.domain.review.model.Review;
 import com.clova.hackathon.goodbyebunny.global.security.provider.JwtTokenProvider;
+import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -43,9 +44,11 @@ public class MemberService {
          return jwtTokenProvider.createAccessToken(member.getNickname());
     }
 
-    public List<Member> search(String nickName){
+    public List<?> search(String nickName){
         Member member = memberRepository.findMemberByNickname(nickName)
                 .orElseThrow(() -> new IllegalArgumentException("로그인 실패."));
-        return customMemberRepository.getMatchingMembers();
+        Review review = member.getReview();
+
+        return customMemberRepository.getMatchingMembers(member.getAge(),member.getId());
     }
 }
