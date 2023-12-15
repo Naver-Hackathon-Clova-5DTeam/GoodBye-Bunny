@@ -10,13 +10,15 @@ import java.time.LocalDateTime;
 @Builder
 public class ReviewReadResponse {
 
+    private Long reviewId;
     private String memberNickname;
     private String title;
     private String content;
     private LocalDateTime updateTime;
 
-    public static ReviewReadResponse of(String memberNickname, String title, String content, LocalDateTime reviewUpdateTime) {
+    public static ReviewReadResponse of(Long reviewId, String memberNickname, String title, String content, LocalDateTime reviewUpdateTime) {
         return ReviewReadResponse.builder()
+                .reviewId(reviewId)
                 .memberNickname(memberNickname)
                 .title(title)
                 .content(content)
