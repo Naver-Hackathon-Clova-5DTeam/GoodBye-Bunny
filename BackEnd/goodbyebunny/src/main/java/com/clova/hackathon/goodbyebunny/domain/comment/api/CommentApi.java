@@ -32,4 +32,9 @@ public class CommentApi {
 
         return commentService.getComments(reviewId);
     }
+
+    @GetMapping("")
+    public ResponseEntity<?> getCommentList(@AuthenticationPrincipal final MemberDetails member){
+        return commentService.getCommentList(member.getNickname());
+    }
 }

@@ -1,6 +1,7 @@
 package com.clova.hackathon.goodbyebunny.domain.comment.app;
 
 import com.clova.hackathon.goodbyebunny.domain.comment.api.request.CommentCreateRequest;
+import com.clova.hackathon.goodbyebunny.domain.comment.api.response.CommentListResponse;
 import com.clova.hackathon.goodbyebunny.domain.comment.api.response.CommentReadResponse;
 import com.clova.hackathon.goodbyebunny.domain.comment.dao.CommentRepository;
 import com.clova.hackathon.goodbyebunny.domain.comment.model.Comment;
@@ -14,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -49,6 +52,22 @@ public class CommentService {
             CommentReadResponse.of(comment.getId(), comment.getCommentContent(), comment.getUpdatedDate(),comment.getMember().getNickname(),comment.getMember().getProfile())
         ).toList());
 
+    }
+
+    public ResponseEntity<?> getCommentList(String nickname){
+        Member member = memberRepository.findMemberByNickname(nickname)
+                .orElseThrow(() -> new IllegalArgumentException("로그인 실패."));
+
+        Optional<List<Comment>> commentList = commentRepository.findCommentByMember(member);
+
+        if (commentList.isPresent()){
+            List<CommentListResponse> commentDTOList = commentList.get().stream()
+                    .map(comment -> new CommentListResponse(comment.getId(), comment.getCommentContent(),comment.getUpdatedDate(),comment.getReview().getMember().getNickname()))
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok(commentDTOList);
+        }else{
+            return ResponseEntity.ok(null);
+        }
     }
 
 
