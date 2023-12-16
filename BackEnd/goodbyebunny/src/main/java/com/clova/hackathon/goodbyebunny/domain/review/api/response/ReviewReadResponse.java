@@ -14,6 +14,7 @@ public class ReviewReadResponse {
 
     private Long reviewId;
     private String memberNickname;
+    private int point;
     private String title;
     private String content;
     private List<String> keywordsList;
@@ -21,10 +22,11 @@ public class ReviewReadResponse {
 
 
     public static ReviewReadResponse of(Long reviewId, String memberNickname, String title
-            , String content, LocalDateTime reviewUpdateTime,List<String> keywordsList) {
+            , String content, LocalDateTime reviewUpdateTime,List<String> keywordsList, int point) {
         return ReviewReadResponse.builder()
                 .reviewId(reviewId)
                 .memberNickname(memberNickname)
+                .point(point)
                 .title(title)
                 .content(content)
                 .keywordsList(keywordsList)
