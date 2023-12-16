@@ -36,6 +36,7 @@ public class ReviewService {
     private final ReviewKeywordRepository reviewKeywordRepository;
     private final KeywordRepository keywordRepository;
 
+
     private final CustomMemberRepositoryImpl customMemberRepository;
     private final RestTemplate restTemplate;
 
@@ -116,8 +117,20 @@ public class ReviewService {
         Review review = reviewRepository.findReviewByMemberId(member.getId())
                 .orElseThrow(() -> new IllegalStateException("존재하지 않는 회고입니다."));
 
+        //review 조회
+        List<ReviewKeyword> reviewKeywords = reviewKeywordRepository.findReviewKeywordsByReviewId(review.getId())
+                .orElseThrow(() -> new IllegalStateException("키워드가 존재하지 않습니다."));
+        List<String> keywordsList = new ArrayList<>();
 
-        return ResponseEntity.ok(ReviewReadResponse.of(review.getId(), member.getNickname(), review.getTitle(), review.getContent(), review.getUpdatedDate()));
+        for (ReviewKeyword reviewKeyword : reviewKeywords) {
+            String word = reviewKeyword.getKeyword().getWord();
+            System.out.println(word); // 키워드 출력
+            keywordsList.add(word); // 키워드 리스트에 추가
+        }
+
+
+        return ResponseEntity.ok(ReviewReadResponse.of(review.getId(), member.getNickname(), review.getTitle()
+                , review.getContent(), review.getUpdatedDate(),keywordsList));
 
     }
 
