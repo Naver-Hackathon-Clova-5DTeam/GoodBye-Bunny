@@ -130,7 +130,7 @@ public class ReviewService {
 
 
         return ResponseEntity.ok(ReviewReadResponse.of(review.getId(), member.getNickname(), review.getTitle()
-                , review.getContent(), review.getUpdatedDate(),keywordsList));
+                , review.getContent(), review.getUpdatedDate(),keywordsList,member.getPoint()));
 
     }
 
