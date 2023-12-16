@@ -10,18 +10,21 @@ import java.time.LocalDateTime;
 @Builder
 public class CommentReadResponse {
 
+
+    private String memberNickname;
+    private String memberProfile;
     private Long commentId;
     private String commentContent;
     private LocalDateTime updateTime;
-    private String memberNickname;
 
 
-    public static CommentReadResponse of(Long commentId, String content, LocalDateTime reviewUpdateTime,String memberNickname) {
+    public static CommentReadResponse of(Long commentId, String content, LocalDateTime reviewUpdateTime,String memberNickname, String memberProfile) {
         return CommentReadResponse.builder()
                 .commentId(commentId)
                 .commentContent(content)
                 .updateTime(reviewUpdateTime)
                 .memberNickname(memberNickname)
+                .memberProfile(memberProfile)
                 .build();
 
     }
