@@ -1,12 +1,10 @@
 package com.clova.hackathon.goodbyebunny.domain.member.model;
 
 import com.clova.hackathon.goodbyebunny.domain.comment.model.Comment;
-import com.clova.hackathon.goodbyebunny.domain.item.model.Item;
 import com.clova.hackathon.goodbyebunny.domain.item.model.MemberItem;
 import com.clova.hackathon.goodbyebunny.domain.item.model.PickedItem;
 import com.clova.hackathon.goodbyebunny.domain.review.model.Review;
 import com.clova.hackathon.goodbyebunny.global.common.model.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;

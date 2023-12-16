@@ -2,6 +2,7 @@ package com.clova.hackathon.goodbyebunny.domain.item.app;
 
 
 import com.clova.hackathon.goodbyebunny.domain.item.api.request.PickItemRequest;
+import com.clova.hackathon.goodbyebunny.domain.item.api.request.PurchaseItemRequest;
 import com.clova.hackathon.goodbyebunny.domain.item.api.response.GetItemResponseDto;
 import com.clova.hackathon.goodbyebunny.domain.item.dao.CustomItemRepositoryImpl;
 import com.clova.hackathon.goodbyebunny.domain.item.dao.ItemRepository;
@@ -10,7 +11,6 @@ import com.clova.hackathon.goodbyebunny.domain.item.dao.PickedItemRepository;
 import com.clova.hackathon.goodbyebunny.domain.item.model.Item;
 import com.clova.hackathon.goodbyebunny.domain.item.model.ItemType;
 import com.clova.hackathon.goodbyebunny.domain.item.model.MemberItem;
-import com.clova.hackathon.goodbyebunny.domain.item.api.request.PurchaseItemRequest;
 import com.clova.hackathon.goodbyebunny.domain.item.model.PickedItem;
 import com.clova.hackathon.goodbyebunny.domain.member.dao.MemberRepository;
 import com.clova.hackathon.goodbyebunny.domain.member.model.Member;
@@ -22,8 +22,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
-import static com.clova.hackathon.goodbyebunny.domain.member.model.QMember.member;
 
 @Service
 @RequiredArgsConstructor

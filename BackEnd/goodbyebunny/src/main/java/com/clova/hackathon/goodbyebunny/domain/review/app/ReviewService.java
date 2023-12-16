@@ -124,7 +124,6 @@ public class ReviewService {
 
         for (ReviewKeyword reviewKeyword : reviewKeywords) {
             String word = reviewKeyword.getKeyword().getWord();
-            System.out.println(word); // 키워드 출력
             keywordsList.add(word); // 키워드 리스트에 추가
         }
 

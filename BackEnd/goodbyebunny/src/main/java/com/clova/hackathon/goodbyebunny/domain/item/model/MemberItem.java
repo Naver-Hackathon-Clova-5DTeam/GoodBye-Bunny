@@ -3,10 +3,11 @@ package com.clova.hackathon.goodbyebunny.domain.item.model;
 
 import com.clova.hackathon.goodbyebunny.domain.member.model.Member;
 import com.clova.hackathon.goodbyebunny.global.common.model.BaseEntity;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
-
-import java.util.List;
 
 
 @Entity

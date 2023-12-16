@@ -1,9 +1,6 @@
 package com.clova.hackathon.goodbyebunny.domain.item.dao;
 
 import com.clova.hackathon.goodbyebunny.domain.item.model.ItemDTO;
-import com.clova.hackathon.goodbyebunny.domain.member.dao.CustomMemberRepository;
-import com.clova.hackathon.goodbyebunny.domain.member.model.Member;
-import com.clova.hackathon.goodbyebunny.domain.member.model.dto.MemberReviewDto;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

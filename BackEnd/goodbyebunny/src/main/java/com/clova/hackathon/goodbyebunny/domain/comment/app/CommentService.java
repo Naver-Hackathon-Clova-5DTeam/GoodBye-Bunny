@@ -9,7 +9,6 @@ import com.clova.hackathon.goodbyebunny.domain.member.dao.MemberRepository;
 import com.clova.hackathon.goodbyebunny.domain.member.model.Member;
 import com.clova.hackathon.goodbyebunny.domain.review.dao.ReviewRepository;
 import com.clova.hackathon.goodbyebunny.domain.review.model.Review;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
