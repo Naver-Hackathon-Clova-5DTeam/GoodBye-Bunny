@@ -33,6 +33,8 @@ public class CommentService {
         Member member = memberRepository.findMemberByNickname(memberNickname)
                 .orElseThrow(() -> new IllegalStateException("존재하지 않는 회원입니다."));
 
+        member.updateMember(member.getPoint()+5);
+        memberRepository.save(member);
 
         Review review = reviewRepository.findReviewById(reviewId)
                 .orElseThrow(() -> new IllegalStateException("존재하지 않는 회고입니다."));
